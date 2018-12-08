@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Artigo from '../components/Artigo';
 import Contador from '../components/Contador';
+import { Container, Alert, Button } from 'reactstrap';
 
 class App extends Component {
 
@@ -25,23 +26,33 @@ class App extends Component {
     const { artigos, tempo } = this.state;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <Contador tempo={tempo} numero={200} />
-          <h1>BATTOP</h1>
-          {
-            artigos.map(
-              artigo => (
-                <Artigo 
-                  nome={artigo.nome} 
-                  texto={artigo.texto} 
-                />
-              )
-            )
-          }
+      <Container>
+
+        <div className="App">
           
-        </header>
-      </div>
+          <header className="App-header">
+            <Contador tempo={tempo} numero={200} />
+            <h1>BATTOP</h1>
+            <Alert color="warning">
+              Alert Example
+            </Alert>
+            <Button color="info">
+              Button Example
+            </Button>
+            {
+              artigos.map(
+                artigo => (
+                  <Artigo 
+                    nome={artigo.nome} 
+                    texto={artigo.texto} 
+                  />
+                )
+              )
+            }
+            
+          </header>
+        </div>
+      </Container>
     );
   }
 }
