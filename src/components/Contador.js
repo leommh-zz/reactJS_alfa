@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Contador extends React.Component {
 
@@ -7,40 +7,38 @@ class Contador extends React.Component {
         numero: 0
     }
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        
+
         this.state = {
-            numero: props.numero
+            numero: props.numero,
         }
     }
 
-    componentDidMount(){
-        this.Interval = setInterval(() => {
+    componentDidMount() {
+        this.interval = setInterval(() => {
             this.setState({
                 numero: this.state.numero + 1
             })
-        }, this.props.tempo)
-        
+        }, this.props.tempo);
     }
 
-    componentDidUpdate(oldProps, nextProps){
-        console.log('ComponentDidUpdate')
-        console.log(`Numero Anterior: ${oldProps.numero}`)
-        console.log(`Numero Futuro: ${nextProps.numero}`)
+    // componentDidUpdate(oldProps, oldState) {
+    //     console.log('componentDidUpdate');
+    //     console.log('numero anterior:', oldState.numero);
+    //     console.log('numero atual:', this.state.numero);
+    // }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
-    componentWillUnmount(){
-        clearInterval(this.Interval);
+    render() {
+        return (
+            <p>{this.state.numero}</p>
+        );
     }
 
-    render(){
-        const { numero } = this.state
-
-        return(
-            <p>{numero}</p>
-        )
-    }
 }
 
-export default Contador
+export default Contador;

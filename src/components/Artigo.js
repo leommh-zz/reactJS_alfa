@@ -1,12 +1,15 @@
-import React from 'react'
-import BemVindo from './BemVindo'
-import Conteudo from './Conteudo'
+import React from 'react';
 
-const Artigo = props => (
-    <div>
-        <BemVindo nome={props.nome} />
-        <Conteudo texto={props.texto} />
-    </div>
-)
+import BemVindo from './BemVindo';
+import Conteudo from './Conteudo';
 
-export default Artigo
+const Artigo = (props) => {
+    return (
+        <div>
+            <BemVindo nome={props.nome} />
+            <Conteudo texto={props.texto} />
+        </div>
+    );
+}
+
+export default Artigo;

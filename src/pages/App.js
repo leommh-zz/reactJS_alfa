@@ -1,31 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Container} from 'reactstrap';
-import { HashRouter, Link, Route } from 'react-router-dom';
 
-import SobrePage from './SobrePage';
-import TarefasPage from './TarefasPage';
+import { Container, Nav, NavItem } from 'reactstrap';
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Switch
+} from 'react-router-dom';
+
+import './App.css';
+
 import HomePage from './HomePage';
+import TarefasPage from './TarefasPage';
+import SobrePage from './SobrePage';
+import LoginPage from './LoginPage';
+
+import PrivateRoute from '../components/PrivateRoute';
+import Menu from '../components/Menu';
 
 class App extends Component {
 
   render() {
-
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Container>
-          <ul>
-            <li><Link exact to="/">Home</Link></li>
-            <li><Link to="/Tarefas">Tarefas</Link></li>
-            <li><Link to="/Sobre">Sobre</Link></li>
-          </ul>
-
-          <Route path="/" exact component={HomePage} />
-          <Route path="/tarefas/" component={TarefasPage} />
-          <Route path="/sobre/" component={SobrePage} />
+          <Menu />
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <PrivateRoute path="/tarefas" component={TarefasPage} />
+            <Route path="/sobre" component={SobrePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route render={() => (
+              <div>Página não encontrada</div>
+            )} />
+          </Switch>
         </Container>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
