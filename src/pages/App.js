@@ -1,58 +1,32 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Artigo from '../components/Artigo';
-import Contador from '../components/Contador';
-import { Container, Alert, Button } from 'reactstrap';
+import { Container} from 'reactstrap';
+import { HashRouter, Link, Route } from 'react-router-dom';
+
+import SobrePage from './SobrePage';
+import TarefasPage from './TarefasPage';
+import HomePage from './HomePage';
 
 class App extends Component {
 
-  state = {
-    artigos: [
-      {
-        nome: 'Batman',
-        texto: 'Fique no chão!'
-      },
-      {
-        nome: 'Batman2',
-        texto: 'Fique no chão!'
-      },
-    ],
-    tempo: 500
-  }
-
   render() {
 
-    const { artigos, tempo } = this.state;
 
     return (
-      <Container>
+      <HashRouter>
+        <Container>
+          <ul>
+            <li><Link exact to="/">Home</Link></li>
+            <li><Link to="/Tarefas">Tarefas</Link></li>
+            <li><Link to="/Sobre">Sobre</Link></li>
+          </ul>
 
-        <div className="App">
-          
-          <header className="App-header">
-            <Contador tempo={tempo} numero={200} />
-            <h1>BATTOP</h1>
-            <Alert color="warning">
-              Alert Example
-            </Alert>
-            <Button color="info">
-              Button Example
-            </Button>
-            {
-              artigos.map(
-                artigo => (
-                  <Artigo 
-                    nome={artigo.nome} 
-                    texto={artigo.texto} 
-                  />
-                )
-              )
-            }
-            
-          </header>
-        </div>
-      </Container>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/tarefas/" component={TarefasPage} />
+          <Route path="/sobre/" component={SobrePage} />
+        </Container>
+      </HashRouter>
     );
   }
 }

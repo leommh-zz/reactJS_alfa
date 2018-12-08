@@ -7,3 +7,5 @@ class SobrePage extends Component {
         )
     }
 }
+
+export default SobrePage;
